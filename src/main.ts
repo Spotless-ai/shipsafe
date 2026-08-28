@@ -5,21 +5,39 @@ import { formatBytes, safeArchivePath, scanFile, type ProjectFile } from "./scan
 const app = document.querySelector<HTMLDivElement>("#app")!;
 
 app.innerHTML = `
-  <header class="topbar">
-    <a class="brand" href="#">SPOTLESS<span>/</span>SHIPSAFE</a>
-    <div class="trust"><i></i> LOCAL-ONLY · OPEN SOURCE</div>
+  <header class="app-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#">ShipSafe</a>
+      <a class="header-link" href="https://github.com/Spotless-ai/shipsafe#honest-limitations" target="_blank" rel="noreferrer">About</a>
+    </div>
   </header>
-  <main>
+  <main class="shell workspace">
     <section class="hero" id="hero">
-      <p class="eyebrow">PRE-SHARE PROJECT CHECK</p>
-      <h1>Don’t ship<br><em>your secrets.</em></h1>
-      <p class="lead">Built something with AI? Check the project before it goes to GitHub, Discord, a client, or a collaborator.</p>
-      <div class="actions">
-        <label class="primary">Choose project folder<input id="folder-input" type="file" webkitdirectory multiple /></label>
-        <label class="secondary">Open a ZIP<input id="zip-input" type="file" accept=".zip,application/zip" /></label>
+      <div class="intro">
+        <h1>Project scan</h1>
+        <p class="lead">Check a project for credentials, private files, and unnecessary folders before sharing it.</p>
       </div>
-      <div class="promise">
-        <span>01 · SCANS LOCALLY</span><span>02 · NEVER SHOWS SECRET VALUES</span><span>03 · NEVER CHANGES ORIGINALS</span>
+      <div class="start-grid">
+        <section class="upload-card">
+          <div class="folder-icon" aria-hidden="true"><span></span></div>
+          <h2>Choose a project</h2>
+          <p>Select a folder or an existing ZIP archive.</p>
+          <div class="actions">
+            <label class="primary">Choose folder<input id="folder-input" type="file" webkitdirectory multiple /></label>
+            <label class="secondary">Open ZIP<input id="zip-input" type="file" accept=".zip,application/zip" /></label>
+          </div>
+          <small>Files stay on this device. ShipSafe does not change the originals.</small>
+        </section>
+        <aside class="checks-card">
+          <h2>What ShipSafe checks</h2>
+          <ul>
+            <li><span>✓</span><div><strong>Credentials</strong><small>API keys, tokens, private keys, and .env files</small></div></li>
+            <li><span>✓</span><div><strong>Private project data</strong><small>Local databases, backups, and personal paths</small></div></li>
+            <li><span>✓</span><div><strong>Files that do not belong</strong><small>Dependencies, caches, Git history, and OS junk</small></div></li>
+            <li><span>✓</span><div><strong>Unsafe archive paths</strong><small>Paths that could escape the exported folder</small></div></li>
+          </ul>
+          <a href="https://github.com/Spotless-ai/shipsafe#honest-limitations" target="_blank" rel="noreferrer">Read capabilities and limitations</a>
+        </aside>
       </div>
     </section>
     <section class="scanning hidden" id="scanning" aria-live="polite">
@@ -31,7 +49,7 @@ app.innerHTML = `
     </section>
     <section class="results hidden" id="results">
       <div class="result-head">
-        <div><p class="eyebrow">SCAN COMPLETE</p><h2 id="result-title">Review before you share.</h2></div>
+        <div><p class="eyebrow">SCAN COMPLETE</p><h2 id="result-title">Review before you share.</h2><p class="result-note">ShipSafe has not changed any source files.</p></div>
         <button class="text-button" id="start-over">Scan another project</button>
       </div>
       <div class="stats">
@@ -40,16 +58,16 @@ app.innerHTML = `
         <article><strong id="safe-count">0</strong><span>SAFE FILES</span></article>
         <article><strong id="saved-size">0 B</strong><span>REMOVED</span></article>
       </div>
-      <div class="review-head"><div><h3>Review exclusions</h3><p>Risky files are excluded by default. You stay in control.</p></div><span id="review-total"></span></div>
+      <div class="review-head"><div><h3>Files to review</h3><p>Flagged files are removed from the export by default. Change any choice below.</p></div><span id="review-total"></span></div>
       <div class="findings" id="findings"></div>
       <div class="safe-strip" id="safe-strip"></div>
       <div class="export-bar">
-        <div><span>READY TO EXPORT</span><strong id="export-summary"></strong></div>
-        <button class="primary" id="export-button">Create safe ZIP <b>↗</b></button>
+        <div><span>EXPORT SUMMARY</span><strong id="export-summary"></strong></div>
+        <button class="primary" id="export-button">Create reviewed ZIP</button>
       </div>
     </section>
   </main>
-  <footer><span>SHIPSAFE v1.0 · BY SPOTLESS</span><span>No account. No analytics. No uploads.</span></footer>
+  <footer><div class="shell"><span>ShipSafe 1.0 · Open source by Spotless</span><span>Local processing · No account · No analytics</span></div></footer>
 `;
 
 const folderInput = document.querySelector<HTMLInputElement>("#folder-input")!;
