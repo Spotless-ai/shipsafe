@@ -1,12 +1,12 @@
 # ShipSafe
 
-**Check an AI-built project before you share it.**
+**Check a project before you share it.**
 
 ShipSafe catches common accidental leaks—environment files, API keys, private keys, local databases, personal computer paths, and generated junk—then creates a reviewed clean ZIP. It runs entirely in your browser and never modifies the original project.
 
 ## Why this exists
 
-It is easy to ask an AI coding tool to package a project and accidentally send the resulting folder to GitHub, Discord, a client, or a collaborator with `.env`, credentials, or thousands of local dependency files still inside it.
+Project folders often collect files that should not leave your computer. A quick ZIP sent to GitHub, Discord, a client, or a collaborator can include `.env`, credentials, local databases, or thousands of generated dependency files.
 
 ShipSafe makes the check visual and understandable for people who do not already use command-line secret scanners.
 
