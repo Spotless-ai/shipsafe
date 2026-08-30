@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light dark;
   color: #1a1a1a;
   background: #f3f3f3;
   font-family: "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
@@ -122,4 +123,39 @@ footer .shell { min-height: 52px; display: flex; justify-content: space-between;
 @media (max-width: 430px) {
   .actions { width: 100%; flex-direction: column; }
   .actions label { width: 100%; }
+}
+
+@media screen and (prefers-color-scheme: dark) {
+  :root {
+    color: #e8edf3;
+    background: #171b21;
+    --text: #e8edf3;
+    --secondary: #b5bfcc;
+    --border: #424b58;
+    --surface: #222831;
+    --blue: #80bfff;
+    --blue-hover: #3278b8;
+    --red: #ffb4ab;
+    --amber: #f2c779;
+    --green: #8fdb9b;
+  }
+  body { background: #171b21; }
+  .app-header, footer { background: #20252d; border-color: var(--border); }
+  .header-link:hover, .secondary:active, .safe-strip { background: #303946; }
+  .folder-icon, .folder-icon::before { background: #303946; border-color: #a0acbb; }
+  .folder-icon span { border-color: #a0acbb; }
+  .upload-card > small { color: var(--secondary); }
+  .primary { background: #2468a4; border-color: #80bfff; }
+  .primary:hover { border-color: #80bfff; }
+  .primary:active { background: #1d568b; }
+  .secondary { background: #222831; border-color: #758091; }
+  .secondary:hover { background: #303946; }
+  .checks-card h2, .review-head, .finding { border-color: var(--border); }
+  .finding.included { opacity: 1; }
+  .checks-card li > span { background: #263d54; }
+  .scan-mark { border-color: #424b58; border-top-color: var(--blue); }
+  .progress { background: #424b58; }
+  .blocker .severity { background: #3b2528; border-color: #b37572; }
+  .warning .severity { background: #382f21; border-color: #a8905c; }
+  :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 }
