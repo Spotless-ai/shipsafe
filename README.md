@@ -12,13 +12,21 @@ ShipSafe makes the check visual and understandable for people who do not already
 
 ## Use it
 
-1. Open ShipSafe in a modern browser.
+1. [Open ShipSafe](https://spotless-ai.github.io/shipsafe/) in a modern browser.
 2. Choose a project folder or ZIP.
 3. Review every flagged file. Risky files start excluded.
-4. Select **Create safe ZIP**.
+4. Select **Create reviewed ZIP**.
 5. Open and test the exported ZIP before sharing it.
 
 There is no account, upload, analytics, or server-side file processing. The hosted build and a downloaded copy run the same code.
+
+### Try a sample first
+
+[Download the synthetic sample ZIP](https://github.com/Spotless-ai/shipsafe/raw/refs/heads/main/docs/first-trial/shipsafe-sample-project.zip), open it in ShipSafe, review the findings, and inspect the exported ZIP. It contains no real credentials or private project data. [Trial instructions and expected result](docs/first-trial/README.md).
+
+![Edited walkthrough of the live app: open a sample ZIP, review the flagged files, then export](docs/first-trial/shipsafe-workflow.gif)
+
+This 20-second walkthrough uses actual app screenshots and a synthetic project, with edited reading pauses. It is not a continuous screen recording or a security guarantee. [MP4 version](docs/first-trial/shipsafe-workflow.mp4).
 
 ## What v1 checks
 
