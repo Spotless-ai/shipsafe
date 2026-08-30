@@ -40,6 +40,7 @@ ShipSafe is a useful final check, not a security guarantee.
 - It inspects text-like files up to 2 MB. Large and binary file contents are not interpreted.
 - Pattern matching can miss unusual secrets and can produce false positives.
 - Encrypted ZIPs are not supported.
+- ZIPs with an exact root-level file named `__proto__` are rejected with instructions to rename it or select its containing folder. This avoids a ZIP-library filename limitation silently dropping that file. Export paths that normalize to this name are shown as `__proto__-file` in review; colliding export names receive suffixes. Nested names such as `project/__proto__` are preserved.
 - Very large projects can exceed the browser's available memory during ZIP creation.
 - Removing a leaked key from a ZIP does not make that key safe if it was already shared or committed. Rotate exposed credentials immediately.
 

@@ -42,7 +42,10 @@ function normalizePath(path: string): string {
 export function safeArchivePath(inputPath: string): string {
   const normalized = normalizePath(inputPath).replace(/^[A-Za-z]:/, "").replace(/^\/+/, "");
   const parts = normalized.split("/").filter((part) => part && part !== "." && part !== "..");
-  return parts.join("/") || "unnamed-file";
+  const output = parts.join("/") || "unnamed-file";
+  // fflate also uses ordinary objects internally; a null-prototype input alone
+  // cannot preserve this exact root name. Show the rewritten name in review.
+  return output === "__proto__" ? "__proto__-file" : output;
 }
 
 function basename(path: string): string {

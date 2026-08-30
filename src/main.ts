@@ -1,6 +1,7 @@
 import "./style.css";
-import { unzipSync, zip, type AsyncZippable } from "fflate";
-import { formatBytes, safeArchivePath, scanFile, type ProjectFile } from "./scanner";
+import { zip } from "fflate";
+import { formatBytes, scanFile, type ProjectFile } from "./scanner";
+import { prepareArchive, readArchive, UnsupportedArchiveNameError } from "./archive";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 
@@ -95,12 +96,12 @@ zipInput.addEventListener("change", async () => {
   projectName = cleanName(input.name.replace(/\.zip$/i, ""));
   showScanning(`Opening ${input.name}…`);
   try {
-    const entries = unzipSync(new Uint8Array(await input.arrayBuffer()), { filter: (entry) => !entry.name.endsWith("/") });
+    const entries = readArchive(new Uint8Array(await input.arrayBuffer()));
     const files = Object.entries(entries).map(([path, bytes]) => ({ file: new File([bytes], path.split("/").pop() || "file"), path }));
     await scan(files);
-  } catch {
+  } catch (error) {
     reset();
-    alert("ShipSafe couldn’t open that ZIP. It may be encrypted, damaged, or use an unsupported compression method.");
+    alert(error instanceof UnsupportedArchiveNameError ? error.message : "ShipSafe couldn’t open that ZIP. It may be encrypted, damaged, or use an unsupported compression method.");
   }
 });
 
@@ -205,22 +206,10 @@ async function exportSafeZip(): Promise<void> {
   exportButton.disabled = true;
   exportButton.textContent = "Building ZIP…";
   try {
-    const archive: AsyncZippable = {};
-    for (let i = 0; i < included.length; i++) {
-      const item = included[i];
-      let outputPath = safeArchivePath(item.path);
-      let copy = 2;
-      while (Object.hasOwn(archive, outputPath)) {
-        const dot = outputPath.lastIndexOf(".");
-        outputPath = dot > 0
-          ? `${outputPath.slice(0, dot)}-${copy}${outputPath.slice(dot)}`
-          : `${outputPath}-${copy}`;
-        copy++;
-      }
-      archive[outputPath] = new Uint8Array(await item.file.arrayBuffer());
-      exportButton.textContent = `Reading ${i + 1}/${included.length}…`;
-      if (i % 10 === 0) await new Promise((resolve) => requestAnimationFrame(resolve));
-    }
+    const archive = await prepareArchive(included, async (done) => {
+      exportButton.textContent = `Reading ${done}/${included.length}…`;
+      if ((done - 1) % 10 === 0) await new Promise((resolve) => requestAnimationFrame(resolve));
+    });
     const bytes = await new Promise<Uint8Array>((resolve, reject) => {
       zip(archive, { level: 6 }, (error, data) => error ? reject(error) : resolve(data));
     });
