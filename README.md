@@ -68,3 +68,5 @@ ShipSafe has no backend, telemetry, account system, advertisements, or third-par
 ## License
 
 MIT © Spotless
+
+The static build includes `LICENSE.txt` and `third-party-licenses.txt`, including the bundled fflate license.
