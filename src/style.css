@@ -43,12 +43,6 @@ h1 { margin: 0; font-size: 28px; line-height: 1.2; font-weight: 600; }
 .upload-card h2, .checks-card h2 { margin: 0; font-size: 16px; font-weight: 600; }
 .upload-card > p { margin: 7px 0 21px; color: var(--secondary); font-size: 14px; }
 .upload-card > small { margin-top: 18px; color: #6b6b6b; font-size: 12px; }
-.github-help { width: 100%; margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--border); text-align: left; font-size: 13px; line-height: 1.5; }
-.github-help summary { color: var(--blue); cursor: pointer; font-weight: 600; }
-.github-help summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 2px; }
-.github-help ol { padding-left: 22px; margin: 12px 0; }
-.github-help li + li { margin-top: 7px; }
-.github-help p { margin: 10px 0 0; color: var(--secondary); font-size: 12px; }
 .actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
 .primary, .secondary { min-height: 32px; padding: 0 15px; display: inline-flex; align-items: center; justify-content: center; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 600; }
 .primary { color: #fff; background: var(--blue); border: 1px solid var(--blue); }

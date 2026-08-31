@@ -28,16 +28,6 @@ app.innerHTML = `
             <label class="secondary">Open ZIP<input id="zip-input" type="file" accept=".zip,application/zip" /></label>
           </div>
           <small>Files stay on this device. ShipSafe does not change the originals.</small>
-          <details class="github-help">
-            <summary>Project on GitHub?</summary>
-            <ol>
-              <li>Open the repository on GitHub and choose the branch you want to check.</li>
-              <li>Select <strong>Code → Download ZIP</strong>.</li>
-              <li>Return here, select <strong>Open ZIP</strong>, and choose the downloaded file. No need to extract it.</li>
-            </ol>
-            <p>Already have the project on your computer? Use <strong>Choose folder</strong>.</p>
-            <p>This checks the downloaded snapshot, not Git history, and does not change anything on GitHub. If a credential was already exposed, revoke or rotate it; a clean export does not undo the leak.</p>
-          </details>
         </section>
         <aside class="checks-card">
           <h2>What ShipSafe checks</h2>

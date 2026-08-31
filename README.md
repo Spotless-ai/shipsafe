@@ -20,12 +20,6 @@ ShipSafe makes the check visual and understandable for people who do not already
 
 There is no account, upload, analytics, or server-side file processing. The hosted build and a downloaded copy run the same code.
 
-### Project on GitHub?
-
-Open your repository on GitHub, choose the branch you want to check, then select **Code → Download ZIP**. In ShipSafe, select **Open ZIP** and choose that download; you do not need to extract it. If you already have a local copy, use **Choose folder** instead. [GitHub's download instructions](https://docs.github.com/en/repositories/working-with-files/using-files/downloading-files-from-github).
-
-ShipSafe checks the downloaded snapshot, not Git history. It does not import repository links directly or change anything on GitHub. If a credential was already exposed, revoke or rotate it; a clean export does not undo the leak.
-
 ### Try a sample first
 
 [Download the sample ZIP](https://github.com/Spotless-ai/shipsafe/raw/refs/heads/main/docs/first-trial/shipsafe-sample-project.zip) to try scanning and exporting without using your own project. It contains five example files and no real credentials. [Follow the walkthrough](docs/first-trial/README.md).
